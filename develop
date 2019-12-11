@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Decide which docker-compose file to use
+COMPOSE="docker-compose"
+COMPOSERUN="${COMPOSE} run -u docker --rm"
+
+if [[ $# -gt 0 ]];then
+    if [[ "$1" == "reload" ]]; then
+        shift 1
+        ${COMPOSE} down && ${COMPOSE} up -d
+    elif [[ "$1" == "composer" ]]; then
+        shift 1
+        ${COMPOSERUN} php composer "$@"
+    elif [[ "$1" == "test" ]]; then
+        shift 1
+        ${COMPOSERUN} -T  php ./vendor/bin/phpunit --testdox "$@"
+    else
+        ${COMPOSE} "$@"
+    fi
+else
+    ${COMPOSE} ps
+fi

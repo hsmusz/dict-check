@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  php:
+    image: movecloser/php:7.2
+    volumes:
+      - .:/home/docker
+    networks:
+      - appnet
+networks:
+  appnet:
+    driver: bridge
