@@ -27,7 +27,6 @@ final class Validator
             if ($fh = fopen($wordFile, 'r')) {
                 $found = false;
                 while (!($found || feof($fh))) {
-                var_dump($found);
                     $words = preg_quote(strtolower(fgets($fh, 1024)), '/');
                     $words = explode(',', $words);
                     foreach ($words as $word) {
@@ -37,7 +36,6 @@ final class Validator
                         }
 
                         if (preg_match("/$word/", $lcPass) || preg_match("/$word/", $deleetPass)) {
-                            var_dump($word);
                             $found = true;
                             continue 2;
                         }

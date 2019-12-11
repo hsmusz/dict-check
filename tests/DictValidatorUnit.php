@@ -18,6 +18,8 @@ class DictValidatorUnit extends TestCase
     public function testBase()
     {
         $validator = new Validator();
-        $validator->validate('12345dupa678986543456');
+        $valid = $validator->validate('k0nstantyn0polit4ńczykowianeczka');
+
+        $this->assertFalse($valid);
     }
 }
